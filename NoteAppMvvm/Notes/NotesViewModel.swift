@@ -5,61 +5,57 @@
 //  Created by Mac on 21.02.2021.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
-class NotesViewModel {
-    
-    var notes: [Note] = []
-    var noteNumber = 0
-    var selectedNote: Note?
-    var enteredPassword = ""
-    var category: Category?
-    var coreDataManager = CoreDataManager()
-    
-    public func getNotes(tableView: UITableView){
-        guard let categoryType = category?.type else {return}
-        notes = coreDataManager.fetchNotes(categoryType: categoryType)
-        tableView.reloadData()
+final class NotesViewModel {
+  var notes: [Note] = []
+  var noteNumber = 0
+  var enteredPassword = ""
+  
+  var selectedNote: Note?
+  var category: Category?
+  var coreDataManager = CoreDataManager.shared
+  
+  func getNotes() {
+    guard let categoryType = category?.type else { return }
+    notes = coreDataManager.fetchNotes(categoryType: categoryType)
+  }
+  
+  func lockedNote(note: Note) -> String {
+  var noteTitle = ""
+    if note.isLocked {
+      let stringInputArr = note.title!.components(separatedBy: " ")
+      var stringNeed = ""
+      
+      let firstWordLenght = 4
+      let stars = "*"
+      
+      let repeatingStarForForstWord = String(repeating: stars, count: firstWordLenght)
+      
+      for string in stringInputArr {
+        stringNeed = stringNeed + " " + String(string.first!) + repeatingStarForForstWord
+      }
+      noteTitle = stringNeed
     }
-   
-    public func lockedNote(note: Note) -> String {
-        var noteTitle = note.title
-        if note.isLocked {
-            let stringInputArr = noteTitle!.components(separatedBy: " ")
-            var stringNeed = ""
-            
-            let firstWordLenght = 4
-            let stars = "*"
-            
-            let repeatingStarForForstWord = String(repeating: stars, count: firstWordLenght)
-            
-            for string in stringInputArr {
-                stringNeed = stringNeed + " " + String(string.first!) + repeatingStarForForstWord
-            }
-            noteTitle = stringNeed
-        }
-        return noteTitle!
+    return noteTitle
+  }
+  
+  func hideView(noteViewModel: NoteViewModel, selectedNotePassword: String, completionhandler: (Bool) -> ()) {
+    if enteredPassword == selectedNotePassword {
+      noteViewModel.note = selectedNote
+      noteViewModel.category = category
+      noteViewModel.noteNumber = noteNumber
+      completionhandler(true)
+    } else {
+      completionhandler(false)
     }
-    
-    func hideView (view: PasswordView, noteViewModel: NoteViewModel, selectedNotePassword: String,
-                   completionhandler: (Bool) -> ())
-    {
-        if view.enteredPassword == selectedNotePassword {
-            noteViewModel.note = selectedNote
-            noteViewModel.category = category
-            noteViewModel.noteNumber = noteNumber
-            view.isHidden = !view.isHidden
-            completionhandler(true)
-        } else {
-            print("wrong password")
-           completionhandler(false)
-        }
-    }
-
-    public func addNote(viewModel: NoteViewModel) {
-        viewModel.category = category
-        viewModel.isCameFromAddNote = true
-    }
+  }
+  
+  func addNote(viewModel: NoteViewModel) {
+    viewModel.category = category
+    viewModel.isCameFromAddNote = true
+  }
 }
+
 

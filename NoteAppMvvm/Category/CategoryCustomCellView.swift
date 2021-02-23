@@ -7,17 +7,10 @@
 
 import UIKit
 
-class CategoryCustomCellView: UICollectionViewCell {
-    @IBOutlet weak var categoryLabel: UILabel!
-    
-    @IBInspectable var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
-        }
-    }
-    
-    public func cellConfigure( with viewModel: CategoryCustomCellViewModel){
-        categoryLabel.text = viewModel.categoryLabel
-    }
+final class CategoryCustomCellView: UICollectionViewCell {
+  @IBOutlet weak var categoryTitle: UILabel!
+
+  func cellConfigure(with title: String) {
+    categoryTitle.text = title
+  }
 }

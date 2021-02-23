@@ -6,11 +6,11 @@
 //
 
 import UIKit
-class NotesCustomCellView: UITableViewCell {
-    
-    @IBOutlet weak var noteTitleLabel: UILabel!
-    
-    public func cellConfigure(viewModel: NotesCustimCellViewModel) {
-        noteTitleLabel.text = viewModel.noteTitle
-    }
+
+final class NotesCustomCellView: UITableViewCell {
+  @IBOutlet weak var noteTitleLabel: UILabel!
+  
+  func cellConfigure(with title: String) {
+    noteTitleLabel.text = title
+  }
 }

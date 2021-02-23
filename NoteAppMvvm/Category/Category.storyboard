@@ -14,7 +14,7 @@
         <!--CATEGORIES-->
         <scene sceneID="flQ-bn-Hkt">
             <objects>
-                <viewController storyboardIdentifier="CategoryVc" id="o1i-5K-SuJ" customClass="CategoryView" customModule="NoteAppMvvm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryVc" id="o1i-5K-SuJ" customClass="CategoryViewController" customModule="NoteAppMvvm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lEY-PT-kdu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,8 +59,13 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="categoryLabel" destination="ruU-Kp-flM" id="Jec-Vd-hJZ"/>
+                                            <outlet property="categoryTitle" destination="ruU-Kp-flM" id="Jec-Vd-hJZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
