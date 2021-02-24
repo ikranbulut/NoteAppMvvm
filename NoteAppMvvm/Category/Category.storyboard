@@ -103,6 +103,13 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="beige"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.21960784310000001" green="0.1843137255" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.2460674689" green="0.1978317181" blue="0.18983688600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -117,6 +124,9 @@
     <resources>
         <image name="background2" width="540" height="960"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="beige">
+            <color red="0.91100001335144043" green="0.86400002241134644" blue="0.80099999904632568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="noteBackground">
             <color red="0.875" green="0.82700002193450928" blue="0.76499998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

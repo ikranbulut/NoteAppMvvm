@@ -10,19 +10,13 @@ import UIKit
 final class CategoryViewController: UIViewController {
   @IBOutlet weak var categoryCollectionView: UICollectionView!
   
-  private let cellId = "categoryCellIdentifier"
+  private let categoryCollectionViewcellIdentifier = "categoryCellIdentifier"
   
   private var viewModel = CategoryViewModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    self.navigationController!.navigationBar.shadowImage = UIImage()
-    self.navigationController!.navigationBar.isTranslucent = true
-    self.navigationController?.navigationBar.titleTextAttributes =  [.font: UIFont.boldSystemFont(ofSize: 26)]
-    
-    viewModel.getCategories()
     categoryCollectionView.reloadData()
   }
   
@@ -49,8 +43,6 @@ final class CategoryViewController: UIViewController {
   }
   
   @objc func longPressDelete(sender: UILongPressGestureRecognizer) {
-    if sender.state == .began {
-    }
     if sender.state == .ended {
       viewModel.senderTag = sender.view?.tag
       
@@ -76,7 +68,7 @@ extension CategoryViewController: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CategoryCustomCellView
+    let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewcellIdentifier, for: indexPath) as! CategoryCustomCellView
     
     let row = indexPath.row
     let category = viewModel.categories[row]
@@ -103,7 +95,7 @@ extension CategoryViewController: UICollectionViewDelegate {
     
     let row = indexPath.row
     
-    let selectedCategory = viewModel.categories[row]
+    let selectedCategory = viewModel.getCategory(at: row)
     notesController.viewModel.category = selectedCategory
     
     navigationController?.pushViewController(notesController, animated: true)

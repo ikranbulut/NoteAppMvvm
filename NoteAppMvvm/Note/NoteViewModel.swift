@@ -9,14 +9,13 @@ import Foundation
 
 protocol NoteControllerDelegate {
   func deleteNote(noteNumber: Int)
-  func getNote (note: Note)
-  func addNote (note: Note)
+  func getNote(note: Note)
+  func addNote(note: Note)
 }
 
 final class NoteViewModel {
   private var isLocked = false
   
-  private var coreDataManager = CoreDataManager.shared
   
   var noteNumber = 0
   var isCameFromAddNote = false
@@ -30,23 +29,28 @@ final class NoteViewModel {
   
   func save() {
     if isCameFromAddNote {
-      note = Note(context: coreDataManager.context)
+      note = Note(context: CoreDataManager.shared.context)
+      
       guard let note = note else { return }
+      
       note.category = category?.type
       note.intent = noteIntent
       note.title = noteTitle
       note.password = notePassword
       note.isLocked = isLocked
       note.parentCategory = category
+      
       delegate?.addNote(note: note)
     } else {
       guard let editedNote = note else { return }
       guard let note = note else { return }
+      
       editedNote.category = note.category
       editedNote.password = note.password
       editedNote.isLocked = note.isLocked
       editedNote.title = noteTitle
       editedNote.intent = noteIntent
+      
       delegate?.getNote(note: editedNote)
     }
   }
@@ -55,7 +59,7 @@ final class NoteViewModel {
     delegate?.deleteNote(noteNumber: noteNumber)
   }
   
-  func getPassword() {
+  func locked() {
     note?.password = notePassword
     note?.isLocked = true
   }

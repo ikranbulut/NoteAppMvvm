@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -15,15 +14,15 @@
             <objects>
                 <viewController storyboardIdentifier="NoteVc" id="2Pd-st-heN" customClass="NoteViewController" customModule="NoteAppMvvm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OFZ-3V-llA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="qPp-Sc-N7W">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" name="noteBackground"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-ly-VDa">
-                                <rect key="frame" x="16" y="62" width="382" height="56"/>
+                                <rect key="frame" x="16" y="18" width="568" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="bjE-jF-Nxv"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="mGf-l0-Xn2"/>
@@ -38,7 +37,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKv-Cm-YYr">
-                                <rect key="frame" x="16" y="126" width="382" height="630"/>
+                                <rect key="frame" x="16" y="82" width="568" height="630"/>
                                 <color key="backgroundColor" name="noteBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="382" id="Fet-wh-Ri8"/>
@@ -52,10 +51,10 @@
                                 </connections>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RJL-UG-3lZ">
-                                <rect key="frame" x="128" y="772" width="158" height="40"/>
+                                <rect key="frame" x="128" y="728" width="344" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ca-RJ-3AR" userLabel="Delete">
-                                        <rect key="frame" x="0.0" y="0.0" width="43.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="fYI-aF-fTW"/>
                                             <constraint firstAttribute="height" constant="40" id="xct-aO-nPE"/>
@@ -69,7 +68,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmg-20-h0O" userLabel="Lock">
-                                        <rect key="frame" x="51.5" y="0.0" width="40" height="40"/>
+                                        <rect key="frame" x="103" y="0.0" width="87" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="XbJ-gj-j2R"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="lPu-7i-gLA"/>
@@ -83,7 +82,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFw-QO-9SE" userLabel="Save">
-                                        <rect key="frame" x="99.5" y="0.0" width="58.5" height="40"/>
+                                        <rect key="frame" x="198" y="0.0" width="146" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Toe-6R-TMi"/>
                                             <constraint firstAttribute="height" constant="40" id="rlf-aw-xKL"/>
@@ -103,8 +102,8 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="tPh-RR-ulP"/>
                                 </constraints>
                             </stackView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNy-7e-X8A" customClass="PasswordView" customModule="NoteAppMvvm">
-                                <rect key="frame" x="72" y="348" width="270" height="200"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNy-7e-X8A" customClass="Password" customModule="NoteAppMvvm">
+                                <rect key="frame" x="165" y="200" width="270" height="200"/>
                                 <color key="backgroundColor" name="passwordBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="6uB-RW-IbM"/>

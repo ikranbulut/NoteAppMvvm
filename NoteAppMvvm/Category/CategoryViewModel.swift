@@ -11,32 +11,36 @@ final class CategoryViewModel {
   private var selectedCategoryIndex = 0
   private var cameNoteNumber = 0
   
-  private var coreDataManager = CoreDataManager.shared
   private var category: Category?
   
   var categories: [Category] = []
   var senderTag: Int?
   
-  func getCategories() {
-    categories = coreDataManager.fetchCategories()
+  init(){
+    categories = CoreDataManager.shared.fetchCategories()
   }
   
   func saveCategories() {
-    coreDataManager.save()
+    CoreDataManager.shared.save()
   }
   
   func delete() {
     if let tag = senderTag, categories.count > -1 {
-      coreDataManager.context.delete(categories[tag])
+      CoreDataManager.shared.context.delete(categories[tag])
       categories.remove(at: tag)
     }
     saveCategories()
   }
   
   func addCategory(categoryType: String) {
-    let newCategory = Category(context: coreDataManager.context)
+    let newCategory = Category(context: CoreDataManager.shared.context)
     newCategory.type = categoryType
     categories.append(newCategory)
     saveCategories()
+  }
+  
+  func getCategory(at: Int) -> Category {
+    let category = categories[at]
+    return category
   }
 }

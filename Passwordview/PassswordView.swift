@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class PasswordView: UIView {
+final class Password: UIView {
   @IBOutlet weak var passwordView: UIView!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var enterButton: UIButton!
-  @IBOutlet weak var securityButton: UIButton!
+  @IBOutlet weak var showPasswordButton: UIButton!
   
   var enteredPassword = ""
   
@@ -29,7 +29,7 @@ final class PasswordView: UIView {
     commonInit()
   }
   
-  @IBAction func securityButton(_ sender: UIButton) {
+  @IBAction func showPasswordButton(_ sender: UIButton) {
     passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
   }
   
@@ -44,28 +44,27 @@ final class PasswordView: UIView {
       self.passwordView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
       self.passwordView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
     ])
-    enterButton.layer.cornerRadius = 3
   }
 }
 
 
-extension PasswordView : UITextFieldDelegate {
+extension Password : UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     passwordTextField.endEditing(true)
     return true
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    securityButton.isHidden = false
+    showPasswordButton.isHidden = false
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     enteredPassword = passwordTextField.text!
-    securityButton.isHidden = true
+    showPasswordButton.isHidden = true
   }
   
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-    if passwordTextField.text != "" && passwordTextField.text?.count == 4 {
+    if passwordTextField.text != "" {
       enteredPassword = passwordTextField.text!
       return true
     } else {

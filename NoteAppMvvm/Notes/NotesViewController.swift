@@ -10,9 +10,9 @@ import UIKit
 final class NotesViewController: UIViewController {
   @IBOutlet weak var notesTableView: UITableView!
   @IBOutlet weak var categoryTitle: UILabel!
-  @IBOutlet weak var passwordView: PasswordView!
+  @IBOutlet weak var passwordView: Password!
   
-  private var cellId = "notesCellId"
+  private let noteTableViewCellIdentifier = "notesCellId"
   
   var viewModel = NotesViewModel()
   
@@ -43,18 +43,16 @@ final class NotesViewController: UIViewController {
     
     viewModel.enteredPassword = enteredPassword
     
-    viewModel.hideView(noteViewModel: noteController.viewModel, selectedNotePassword: selectedNotePassword) { isPassword in
-      if isPassword {
+    viewModel.hideView(noteViewModel: noteController.viewModel, selectedNotePassword: selectedNotePassword) { isPasswordTrue in
+      if isPasswordTrue {
         noteController.viewModel.delegate = self
         passwordView.isHidden = !passwordView.isHidden
         
         present(noteController, animated: true, completion: nil)
       } else {
         let alertView = UIAlertController(title: "Incorrect entry!", message: "please enter password again", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-          alertView.dismiss(animated: true) {
-          }
-        }))
+        let backAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertView.addAction(backAction)
         
         present(alertView, animated: true, completion: nil)
       }
@@ -68,7 +66,7 @@ extension NotesViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = notesTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NotesCustomCellView
+    let cell = notesTableView.dequeueReusableCell(withIdentifier: noteTableViewCellIdentifier, for: indexPath) as! NotesCustomCellView
     
     let row = indexPath.row
     
@@ -79,8 +77,6 @@ extension NotesViewController: UITableViewDataSource {
     guard let title = noteTitle else { return cell }
     
     cell.cellConfigure(with: title)
-    
-    cell.selectedBackgroundView?.backgroundColor = .none
     
     return cell
   }
@@ -118,24 +114,24 @@ extension NotesViewController: UITableViewDelegate {
 extension NotesViewController: NoteControllerDelegate {
   func addNote(note: Note) {
     viewModel.notes.append(note)
-    viewModel.coreDataManager.save()
+    CoreDataManager.shared.save()
     notesTableView.reloadData()
   }
   
- func getNote(note: Note) {
+  func getNote(note: Note) {
     viewModel.notes[viewModel.noteNumber] = note
-    viewModel.coreDataManager.save()
+    CoreDataManager.shared.save()
     notesTableView.reloadData()
   }
   
- func deleteNote(noteNumber: Int) {
-    let context = viewModel.coreDataManager.context
+  func deleteNote(noteNumber: Int) {
+    let context = CoreDataManager.shared.context
     let notes = viewModel.notes
     
     context.delete(notes[noteNumber])
     
     viewModel.notes.remove(at: noteNumber)
-    viewModel.coreDataManager.save()
+    CoreDataManager.shared.save()
     notesTableView.reloadData()
   }
 }

@@ -10,7 +10,7 @@ import UIKit
 final class NoteViewController: UIViewController {
   @IBOutlet weak var noteTitleTextField: UITextField!
   @IBOutlet weak var noteIntentTextView: UITextView!
-  @IBOutlet weak var passwordView: PasswordView!
+  @IBOutlet weak var passwordView: Password!
   
   var viewModel = NoteViewModel()
   
@@ -24,7 +24,7 @@ final class NoteViewController: UIViewController {
   
   @objc func hidePasswordViewButtonTapped(sender: UIButton){
     viewModel.notePassword = passwordView.passwordTextField.text!
-    viewModel.getPassword()
+    viewModel.locked()
     passwordView.isHidden = !passwordView.isHidden
   }
   

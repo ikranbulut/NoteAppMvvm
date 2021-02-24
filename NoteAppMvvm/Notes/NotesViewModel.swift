@@ -5,7 +5,7 @@
 //  Created by Mac on 21.02.2021.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 final class NotesViewModel {
@@ -15,40 +15,48 @@ final class NotesViewModel {
   
   var selectedNote: Note?
   var category: Category?
-  var coreDataManager = CoreDataManager.shared
-  
+ 
   func getNotes() {
     guard let categoryType = category?.type else { return }
-    notes = coreDataManager.fetchNotes(categoryType: categoryType)
+    notes = CoreDataManager.shared.fetchNotes(categoryType: categoryType)
   }
   
   func lockedNote(note: Note) -> String {
-  var noteTitle = ""
+    guard let noteTitle = note.title else { return ""}
+    
+    var lockedTitle = ""
+    var repeatingString = ""
+    let star = "*"
+    var firstChar = ""
+    
     if note.isLocked {
-      let stringInputArr = note.title!.components(separatedBy: " ")
-      var stringNeed = ""
-      
-      let firstWordLenght = 4
-      let stars = "*"
-      
-      let repeatingStarForForstWord = String(repeating: stars, count: firstWordLenght)
-      
-      for string in stringInputArr {
-        stringNeed = stringNeed + " " + String(string.first!) + repeatingStarForForstWord
+      let seperatedTitle = noteTitle.components(separatedBy: " ")
+      for (index, parsedWord) in seperatedTitle.enumerated() {
+        firstChar = String(parsedWord.prefix(1))
+        
+        let repeatCount = parsedWord.count - 1
+        
+        repeatingString  = String(repeating: star, count: repeatCount)
+        
+        if index == 0{
+          lockedTitle = firstChar.uppercased() + repeatingString
+        } else {
+          lockedTitle += " " + firstChar.uppercased() + repeatingString
+        }
+        
       }
-      noteTitle = stringNeed
     }
-    return noteTitle
+    return lockedTitle
   }
   
-  func hideView(noteViewModel: NoteViewModel, selectedNotePassword: String, completionhandler: (Bool) -> ()) {
+  func hideView(noteViewModel: NoteViewModel, selectedNotePassword: String, completionHandler: (Bool) -> ()) {
     if enteredPassword == selectedNotePassword {
       noteViewModel.note = selectedNote
       noteViewModel.category = category
       noteViewModel.noteNumber = noteNumber
-      completionhandler(true)
+      completionHandler(true)
     } else {
-      completionhandler(false)
+      completionHandler(false)
     }
   }
   
