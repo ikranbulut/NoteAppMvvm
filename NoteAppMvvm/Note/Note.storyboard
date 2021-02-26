@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Note View Controller-->
+        <scene sceneID="UX8-sg-lKb">
+            <objects>
+                <viewController storyboardIdentifier="NoteVc" id="2Pd-st-heN" customClass="NoteViewController" customModule="NoteAppMvvm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OFZ-3V-llA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background2" translatesAutoresizingMaskIntoConstraints="NO" id="qPp-Sc-N7W">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" name="noteBackground"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-ly-VDa">
+                                <rect key="frame" x="16" y="18" width="568" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="bjE-jF-Nxv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="mGf-l0-Xn2"/>
+                                    <constraint firstAttribute="width" constant="382" id="sAa-oC-Ohn"/>
+                                </constraints>
+                                <color key="textColor" red="0.2135886156" green="0.20172642760000001" blue="0.18580794210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="noteTitle:" destination="voB-4o-frv" eventType="editingDidEnd" id="WzV-De-BVn"/>
+                                    <outlet property="delegate" destination="2Pd-st-heN" id="uYm-Rd-wHr"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKv-Cm-YYr">
+                                <rect key="frame" x="16" y="82" width="568" height="630"/>
+                                <color key="backgroundColor" name="noteBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="382" id="Fet-wh-Ri8"/>
+                                    <constraint firstAttribute="height" constant="630" id="f0H-m4-qTu"/>
+                                </constraints>
+                                <color key="textColor" red="0.2135886156" green="0.20172642760000001" blue="0.18580794210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2Pd-st-heN" id="ZEy-cC-FYK"/>
+                                </connections>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RJL-UG-3lZ">
+                                <rect key="frame" x="128" y="728" width="344" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ca-RJ-3AR" userLabel="Delete">
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="fYI-aF-fTW"/>
+                                            <constraint firstAttribute="height" constant="40" id="xct-aO-nPE"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                            <imageReference key="image" image="trash" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteButton:" destination="2Pd-st-heN" eventType="touchUpInside" id="xtm-MU-W9N"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmg-20-h0O" userLabel="Lock">
+                                        <rect key="frame" x="103" y="0.0" width="87" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="XbJ-gj-j2R"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="lPu-7i-gLA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="lock" catalog="system" symbolScale="large" renderingMode="original"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="lockButton:" destination="2Pd-st-heN" eventType="touchUpInside" id="gph-iA-yIo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFw-QO-9SE" userLabel="Save">
+                                        <rect key="frame" x="198" y="0.0" width="146" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Toe-6R-TMi"/>
+                                            <constraint firstAttribute="height" constant="40" id="rlf-aw-xKL"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <imageReference key="image" image="checkmark.circle" catalog="system" symbolScale="large" renderingMode="original"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="2Pd-st-heN" eventType="touchUpInside" id="ME4-f2-eXf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="2We-4T-DxB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="158" id="ZEb-Bl-RTo"/>
+                                    <constraint firstAttribute="height" constant="40" id="oDf-Zj-g57"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="tPh-RR-ulP"/>
+                                </constraints>
+                            </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNy-7e-X8A" customClass="Password" customModule="NoteAppMvvm">
+                                <rect key="frame" x="165" y="200" width="270" height="200"/>
+                                <color key="backgroundColor" name="passwordBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="6uB-RW-IbM"/>
+                                    <constraint firstAttribute="height" constant="200" id="BEu-lC-fWA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="s1d-Ys-ng4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s1d-Ys-ng4" firstAttribute="trailing" secondItem="RJL-UG-3lZ" secondAttribute="trailing" constant="128" id="538-pe-2hx"/>
+                            <constraint firstItem="bKv-Cm-YYr" firstAttribute="top" secondItem="bcd-ly-VDa" secondAttribute="bottom" constant="8" id="7vg-M6-u9E"/>
+                            <constraint firstItem="s1d-Ys-ng4" firstAttribute="trailing" secondItem="bcd-ly-VDa" secondAttribute="trailing" constant="16" id="8Bu-df-xgE"/>
+                            <constraint firstItem="RJL-UG-3lZ" firstAttribute="top" secondItem="bKv-Cm-YYr" secondAttribute="bottom" constant="16" id="Ab5-e5-V0P"/>
+                            <constraint firstItem="bcd-ly-VDa" firstAttribute="leading" secondItem="s1d-Ys-ng4" secondAttribute="leading" constant="16" id="Pxf-fh-tOa"/>
+                            <constraint firstItem="s1d-Ys-ng4" firstAttribute="trailing" secondItem="bKv-Cm-YYr" secondAttribute="trailing" constant="16" id="RBW-3U-FBG"/>
+                            <constraint firstItem="yNy-7e-X8A" firstAttribute="centerX" secondItem="OFZ-3V-llA" secondAttribute="centerX" id="cst-OL-PVz"/>
+                            <constraint firstAttribute="bottom" secondItem="qPp-Sc-N7W" secondAttribute="bottom" id="f2D-Ae-ike"/>
+                            <constraint firstItem="bKv-Cm-YYr" firstAttribute="leading" secondItem="s1d-Ys-ng4" secondAttribute="leading" constant="16" id="fDF-hu-dyd"/>
+                            <constraint firstItem="qPp-Sc-N7W" firstAttribute="top" secondItem="OFZ-3V-llA" secondAttribute="top" id="hUU-Eh-Dgf"/>
+                            <constraint firstItem="qPp-Sc-N7W" firstAttribute="leading" secondItem="s1d-Ys-ng4" secondAttribute="leading" id="jYB-lH-Bqz"/>
+                            <constraint firstItem="qPp-Sc-N7W" firstAttribute="trailing" secondItem="s1d-Ys-ng4" secondAttribute="trailing" id="nxH-fc-h6q"/>
+                            <constraint firstItem="RJL-UG-3lZ" firstAttribute="leading" secondItem="s1d-Ys-ng4" secondAttribute="leading" constant="128" id="rrZ-Q4-RZ2"/>
+                            <constraint firstItem="bcd-ly-VDa" firstAttribute="top" secondItem="s1d-Ys-ng4" secondAttribute="top" constant="18" id="vSQ-GP-dDH"/>
+                            <constraint firstItem="yNy-7e-X8A" firstAttribute="centerY" secondItem="OFZ-3V-llA" secondAttribute="centerY" id="y3o-yZ-PID"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noteIntentTextView" destination="bKv-Cm-YYr" id="pPk-v6-cbQ"/>
+                        <outlet property="noteTitleTextField" destination="bcd-ly-VDa" id="yp5-ld-Tob"/>
+                        <outlet property="passwordView" destination="yNy-7e-X8A" id="2f6-sQ-W1U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A05-bY-nQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="voB-4o-frv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="24.637681159420293" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background2" width="540" height="960"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="lock" catalog="system" width="128" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <namedColor name="noteBackground">
+            <color red="0.875" green="0.82700002193450928" blue="0.76499998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="passwordBackgroundColor">
+            <color red="0.85100001096725464" green="0.69800001382827759" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
